@@ -1,2 +1,0 @@
-INSERT OVERWRITE table HEM.MODEM_SERVICE_QUALITY_HOURLY PARTITION(event_timestamp)
- Select * from HEM.MODEM_SERVICE_QUALITY_HOURLY_BKP2021 where to_date(event_timestamp) in ('2020-07-06','2020-07-09');

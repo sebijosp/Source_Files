@@ -1,8 +1,0 @@
-create table if not exists CDRDM.CDR_W_FIDO_AUDIT_FILES
-(
-STREAM_NAME STRING,
-FILE_NAME      STRING,
-FILE_COUNT       STRING,
-RUN_DATE TIMESTAMP
-) partitioned by (EVENT_DATE DATE)
-stored as ORC;
