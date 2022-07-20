@@ -1,0 +1,1 @@
+insert overwrite table cdrdm.bnk_in_rt_id_lookup select distinct incoming_route_id from cdrdm.bnk_merge_gsm_transit_cdr;

@@ -1,0 +1,2 @@
+CREATE VIEW IPTV.VW_LTV_CHANNEL_DIM AS 
+select ltv_channel_dim.channel_sk, ltv_channel_dim.source_id, ltv_channel_dim.gracenote_id, ltv_channel_dim.x1_station_id, ltv_channel_dim.call_sign, ltv_channel_dim.channel_name, ltv_channel_dim.provider_name, ltv_channel_dim.channel_format, ltv_channel_dim.mode_of_access_cd, ltv_channel_dim.device_type_cd, ltv_channel_dim.cdvr_enabled_flag, ltv_channel_dim.hdp_create_ts, ltv_channel_dim.hdp_update_ts, ltv_channel_dim.crnt_flg, ltv_channel_dim.src_eff_dt, ltv_channel_dim.src_end_dt from IPTV.LTV_CHANNEL_DIM;

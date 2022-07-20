@@ -1,0 +1,26 @@
+USE cdrdm;
+
+TRUNCATE TABLE fact_bobo_cdr_process;
+TRUNCATE TABLE fact_glenayre_cdr_process;
+TRUNCATE TABLE fact_glenayre_unbillable_process;
+TRUNCATE TABLE fact_gmpc_cdr_process;
+TRUNCATE TABLE fact_gprs_cdr_process;
+TRUNCATE TABLE fact_gprs_mpg_ggsn_cdr_process;
+TRUNCATE TABLE fact_gprs_sgw_cdr_process;
+TRUNCATE TABLE fact_gprs_unbillable_process;
+TRUNCATE TABLE fact_gsm_cdr_process;
+TRUNCATE TABLE fact_gsm_transit_cdr_process;
+TRUNCATE TABLE fact_gsm_unbillable_pp_process;
+TRUNCATE TABLE fact_gsm_unbillable_process;
+TRUNCATE TABLE fact_imm_cdr_process;
+TRUNCATE TABLE fact_imm_unbillable_process;
+TRUNCATE TABLE fact_ims_cdr_process;
+TRUNCATE TABLE fact_ims_drop_cdr_process;
+TRUNCATE TABLE fact_ium1205_sms_drop_process;
+TRUNCATE TABLE fact_pgw_drop_cdr_process;
+TRUNCATE TABLE fact_rhpc_dpscsv_vq_daily_process;
+TRUNCATE TABLE fact_rhps_ld_process;
+TRUNCATE TABLE fact_sgw_drop_cdr_process;
+TRUNCATE TABLE fact_sms_cdr_process;
+TRUNCATE TABLE fact_tap3_unbillable_process;
+TRUNCATE TABLE fact_tap3in_cdr_process;

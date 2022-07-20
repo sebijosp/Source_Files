@@ -1,0 +1,28 @@
+CREATE OR REPLACE VIEW `hem`.`ipdr_s06_vw` AS 
+SELECT `ipdr_s06`.`cmts_host_name`,
+  `ipdr_s06`.`cmts_sys_up_time`,
+  `ipdr_s06`.`cmts_md_if_name`,
+  `ipdr_s06`.`cmts_md_if_index`,
+  `ipdr_s06`.`cmts_md_cm_sg_id`,
+  `ipdr_s06`.`cmts_rcp_id`,
+  `ipdr_s06`.`cmts_rcc_status_id`,
+  `ipdr_s06`.`cmts_rcs_id`,
+  `ipdr_s06`.`cmts_tcs_id`,
+  `ipdr_s06`.`cm_mac_addr`,
+  `ipdr_s06`.`cm_ipv4_addr`,
+  `ipdr_s06`.`cm_ipv6_addr`,
+  `ipdr_s06`.`cm_ipv6_link_local_addr`,
+  `ipdr_s06`.`cm_qos_version`,
+  `ipdr_s06`.`cm_reg_status_value`,
+  `ipdr_s06`.`cm_last_reg_time`,
+  `ipdr_s06`.`rec_type`,
+  `ipdr_s06`.`rec_creation_time`,
+  `ipdr_s06`.`cmts_ip_address`,
+  `ipdr_s06`.`hdp_insert_ts`,
+  `ipdr_s06`.`hdp_update_ts`,
+  `ipdr_s06`.`hdp_file_name`,
+  `ipdr_s06`.`job_execution_id`,
+  `ipdr_s06`.`processed_date`,
+   from_unixtime(CAST(`ipdr_s06`.`rec_creation_time`/1000 as BIGINT), 'yyyy-MM-dd') as `rec_creation_time_dt`
+FROM `ipdr`.`ipdr_s06` 
+where `ipdr_s06`.`processed_date`=DATE_SUB(CURRENT_DATE(), 1);

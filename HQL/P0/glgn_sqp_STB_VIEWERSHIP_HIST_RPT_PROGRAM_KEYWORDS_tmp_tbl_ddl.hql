@@ -1,0 +1,9 @@
+create table ext_stb_viewership.hist_rpt_program_keywords_sqp_imp
+(
+PROGRAM_ID BIGINT,
+KEYWORD_ID VARCHAR(7),
+WEIGHT BIGINT,
+DELTA_IND VARCHAR(3),
+SOURCE_FILENAME VARCHAR(100),
+DATALAKE_LOAD_TS TIMESTAMP)
+STORED AS ORC;

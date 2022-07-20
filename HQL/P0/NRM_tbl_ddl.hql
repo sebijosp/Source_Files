@@ -1,0 +1,18 @@
+CREATE TABLE HEM.NRM (
+   CMTS              STRING,
+   PORTGROUP         STRING,
+   PORTNAME          STRING,
+   PORT_TYPE         STRING,
+   RTN_SEG           STRING,
+   FWD_SEG           STRING,
+   PHUB              STRING,
+   SAMKEY            STRING
+   HDP_UPDATE_TS     TIMESTAMP,
+   HDP_INSERT_TS     TIMESTAMP,
+   HDP_FILE_NAME     STRING,
+   JOB_EXECUTION_ID  STRING
+) STORED AS ORC;
+
+
+
+

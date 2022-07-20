@@ -1,0 +1,1 @@
+drop table cdrdm.nsd_data_validator;

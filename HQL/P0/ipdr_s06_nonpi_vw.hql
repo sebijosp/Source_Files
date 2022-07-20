@@ -1,0 +1,27 @@
+CREATE OR REPLACE VIEW `hem_nonpi`.`ipdr_s06_vw` AS
+SELECT
+  sha2(`ipdr_s06`.`cmts_host_name`,256) cmts_host_name,
+  `ipdr_s06`.`cmts_sys_up_time`, 
+  sha2(`ipdr_s06`.`cmts_md_if_name`,256) cmts_md_if_name,
+  `ipdr_s06`.`cmts_md_if_index`,
+  `ipdr_s06`.`cmts_md_cm_sg_id`,
+  `ipdr_s06`.`cmts_rcp_id`,
+  `ipdr_s06`.`cmts_rcc_status_id`,
+  `ipdr_s06`.`cmts_rcs_id`,
+  `ipdr_s06`.`cmts_tcs_id`,
+  sha2(`ipdr_s06`.`cm_mac_addr`,256) cm_mac_addr,
+  sha2(`ipdr_s06`.`cm_ipv4_addr`,256) cm_ipv4_addr,
+  sha2(`ipdr_s06`.`cm_ipv6_addr`,256) cm_ipv6_addr,
+  sha2(`ipdr_s06`.`cm_ipv6_link_local_addr`,256) cm_ipv6_link_local_addr,
+  sha2(CAST(`ipdr_s06`.`cm_qos_version` AS STRING),256) cm_qos_version,
+  `ipdr_s06`.`cm_reg_status_value`,
+  `ipdr_s06`.`cm_last_reg_time`,
+  `ipdr_s06`.`rec_type`,
+  `ipdr_s06`.`rec_creation_time`,
+  sha2(CAST(`ipdr_s06`.`cmts_ip_address` AS STRING),256) cmts_ip_address,
+  `ipdr_s06`.`hdp_insert_ts`,
+  `ipdr_s06`.`hdp_update_ts`,
+  sha2(CAST(`ipdr_s06`.`hdp_file_name` AS STRING),256) hdp_file_name,
+  `ipdr_s06`.`job_execution_id`,
+  `ipdr_s06`.`processed_date`
+FROM `hem`.`ipdr_s06`; 

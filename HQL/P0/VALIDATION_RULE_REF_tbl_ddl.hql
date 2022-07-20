@@ -1,0 +1,11 @@
+DROP TABLE HEM.VALIDATION_RULES_REF;
+CREATE TABLE HEM.VALIDATION_RULES_REF
+(
+SOURCE_TABLE        string,
+RULE_TYPE       string,
+RULE_VALUE     bigint,
+RULE_SQL        string,
+IN_USE_FLG string,
+DESCRIPTION string
+);
+

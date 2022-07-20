@@ -1,0 +1,16 @@
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date < '2021-01-16');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-01-16',extraction_date < '2021-01-23');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-01-23',extraction_date < '2021-01-30');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-01-30',extraction_date < '2021-02-01');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-02-01',extraction_date < '2021-02-06');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-02-06',extraction_date < '2021-02-13');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-02-13',extraction_date < '2021-02-20');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-02-20',extraction_date < '2021-02-26');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-02-26',extraction_date < '2021-03-01');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-03-01',extraction_date < '2021-03-06');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-03-06',extraction_date < '2021-03-13');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-03-13',extraction_date < '2021-03-20');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-03-20',extraction_date < '2021-03-26');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-03-26',extraction_date < '2021-04-01');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-04-01',extraction_date < '2021-04-03');
+alter table mt_pricing.fido_payer_segmentation DROP IF EXISTS PARTITION(extraction_date > '2021-04-03',extraction_date < '2021-04-10');

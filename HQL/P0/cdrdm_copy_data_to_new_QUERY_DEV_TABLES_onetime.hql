@@ -1,0 +1,13 @@
+SET hive.execution.engine=tez;
+
+use cdrdm;
+
+insert into table cdrdm.fact_gsm_transit_cdr Partition (call_timestamp_date)
+select record_sequence_number,imsi,exchange_identity,switch_identity,call_timestamp,chargeable_duration,calling_party_number,cleansed_calling_number,called_party_number,cleansed_called_number,original_called_number,cleansed_original_number,reg_seizure_charging_start,redirecting_number,cleansed_redirecting_number,fault_code,eos_info,incoming_route_id,outgoing_route_id,charged_party,charged_party_number,cleansed_charged_number,internal_cause_and_loc,traffic_activity_code,disconnecting_party,subscriptiontype,file_name,record_start,record_end,record_type,family_name,version_id,file_time,file_id,switch_name,num_records,insert_timestamp,
+NULL as Clng_Pty_OCN,  NULL as Cld_Pty_OCN,  NULL as Clng_Pty_LRN_SPID,  NULL as Cld_Pty_LRN_SPID, call_timestamp_date from EXT_CDRDM.FACT_GSM_TRANSIT_CDR_QUERYDEV_BKP;
+
+
+
+insert into table cdrdm.fact_gsm_cdr Partition (call_timestamp_date)
+select subscriber_no,record_sequence_number,call_type,imsi,imei,exchange_identity,switch_identity,call_timestamp,chargeable_duration,calling_party_number,cleansed_calling_number,called_party_number,cleansed_called_number,original_called_number,cleansed_original_number,reg_seizure_charging_start,mobile_station_roaming_number,redirecting_number,cleansed_redirecting_number,fault_code,eos_info,incoming_route_id,outgoing_route_id,first_cell_id,last_cell_id,charged_party,charged_party_number,cleansed_charged_number,internal_cause_and_loc,traffic_activity_code,disconnecting_party,partial_output_num,rco,ocn,multimediacall,teleservicecode,tariffclass,first_cell_id_extension,subscriptiontype,srvccindicator,file_name,record_start,record_end,record_type,family_name,version_id,file_time,file_id,switch_name,num_records,insert_timestamp,
+NULL as PD_Subscriber_NO,  NULL as TR_BAN,  NULL as TR_ACCOUNT_SUB_TYPE,  NULL as TR_COMPANY_CODE,  NULL as TR_FRANCHISE_CD,  NULL as TR_PRODUCT_TYPE,  NULL as TR_BA_ACCOUNT_TYPE,  NULL as Sub_OCN,  NULL as Clng_Pty_OCN,  NULL as Cld_Pty_OCN,  NULL as Sub_SPID,  NULL as Clng_Pty_LRN_SPID,  NULL as Cld_Pty_LRN_SPID,  NULL as Dial_Code_Clng_Cld,  NULL as Cnt_name_Clng_Cld,call_timestamp_date  from EXT_CDRDM.FACT_GSM_CDR_QUERYDEV_BKP;

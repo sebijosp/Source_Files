@@ -1,0 +1,23 @@
+create table HEM.NONPI_CCAP_ds_md_util_daily_fct
+(
+  network_topology_key bigint COMMENT 'Network Topology Key',                                                                                                                                                                                                 
+  cmts_host_name string COMMENT 'Fully Qualified Domain Name (FQDN) of the CMTS. If the CMTS does not have a domain name it contains an empty string.',                                                                                                       
+  cmts_md_if_index bigint COMMENT 'Interface Index for the CMTS MAC domain interface (described in CmtsMdIfName).',                                                                                                                                           
+  ds_util_interval int COMMENT 'Time interval over which the channel utilization index is calculated.(sec)',                                                                                                                                                  
+  interface_count bigint COMMENT 'Count of the Interface',                                                                                                                                                                                                    
+  is_md_lvl_flg string COMMENT 'Flag indicates S-SCQAM,O-OFDMA , P=Port',                                                                                                                                                                                     
+  ds_util_total_bytes bigint COMMENT 'No. of bytes in the payload portion of MPEG Packets(excludes MPEG header or pointer_field) transported by the DS interface.',                                                                                           
+  ds_util_used_bytes bigint COMMENT 'No. DOCSIS data bytes transported by the DS interface. (Number of bytes - minus Number of stuff bytes) transported in DOCSIS payloads.',                                                                                 
+  capacity_bps double COMMENT 'Capacity in bytes per second',                                                                                                                                                                                                 
+  ds_throughput_bps_max int COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                                    
+  ds_throughput_bps_95 int COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                                     
+  ds_throughput_bps_98 int COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                                     
+  ds_util_index_percentage decimal(10,2) COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                       
+  ds_util_index_percentage_max decimal(10,2) COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                   
+  ds_util_index_percentage_95 decimal(10,2) COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                    
+  ds_util_index_percentage_98 decimal(10,2) COMMENT 'Calculated and truncated utilization index percentage for the downstream interface.',                                                                                                                    
+  rop bigint COMMENT 'No of times port congested in a day ',                                                                                                                                                                                                  
+  time_flag string COMMENT 'Time Flag Indicator '
+)                                                                                                                                                                     
+PARTITIONED BY (date_key date)    
+STORED AS ORC;  

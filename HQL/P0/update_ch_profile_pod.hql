@@ -1,0 +1,167 @@
+--Backup
+alter table data_pods.ch_profile_acct_summary_dly rename to data_pods.ch_profile_acct_summary_dly_bkp; 
+
+--create new table structure
+drop table data_pods.ch_profile_acct_summary_dly purge;
+CREATE TABLE data_pods.ch_profile_acct_summary_dly(
+enterprise_id           varchar(50),
+customer_id             bigint,
+customer_account        bigint,
+cr_key                  varchar(50),
+customer_location_id    bigint,
+age                     int,
+postal_code             varchar(6),
+num_stb                 int,
+tenure_month_tv         bigint,
+tenure_month_rint       bigint,
+tenure_month_rhp        bigint,
+tenure_month_fint       bigint,
+tenure_month_shm        bigint,
+tenure_year_tv          bigint,
+tenure_year_rint        bigint,
+tenure_year_rhp         bigint,
+tenure_year_fint        bigint,
+tenure_year_shm         bigint,
+product_source          string,
+flg_in_cablefootprint   int,
+flg_out_cablefootprint  int,
+flg_tv                  int,
+flg_rhp                 int,
+flg_shm                 int,
+flg_internet            int,
+flg_rogers              int,
+flg_fido                int,
+brand                   string,
+flg_selfserv            int,
+flg_analog_tv           int,
+int_fido_start_date     date,
+shm_start_date          date,
+tv_start_date           date,
+int_rog_start_date      date,
+rhp_start_date          date,
+int_fido_end_date       date,
+shm_end_date            date,
+tv_end_date             date,
+int_rog_end_date        date,
+rhp_end_date            date,
+consolidated_ind        varchar(1),
+src_acct_id             bigint,
+process_date            date,
+activity_date           date)
+PARTITIONED BY (
+  calendar_year int,
+  calendar_month int)
+tblproperties ("orc.compress"="SNAPPY");
+
+--copy data from backup table to new table
+Insert overwrite table data_pods.ch_profile_acct_summary_dly partition(calendar_year,calendar_month)
+select bkp.enterprise_id,
+bkp.customer_id,
+bkp.customer_account,
+bkp.cr_key,
+bkp.customer_location_id,
+bkp.age,
+bkp.postal_code,
+bkp.num_stb,
+bkp.tenure_month_tv,
+bkp.tenure_month_rint,
+bkp.tenure_month_rhp,
+bkp.tenure_month_fint,
+bkp.tenure_month_shm,
+bkp.tenure_year_tv,
+bkp.tenure_year_rint,
+bkp.tenure_year_rhp,
+bkp.tenure_year_fint,
+bkp.tenure_year_shm,
+bkp.product_source,
+bkp.flg_in_cablefootprint,
+bkp.flg_out_cablefootprint,
+bkp.flg_tv,
+bkp.flg_rhp,
+bkp.flg_shm,
+bkp.flg_internet,
+bkp.flg_rogers,
+bkp.flg_fido,
+bkp.brand,
+bkp.flg_selfserv,
+bkp.flg_analog_tv,
+bkp.int_fido_start_date,
+bkp.shm_start_date,
+bkp.tv_start_date,
+bkp.int_rog_start_date,
+bkp.rhp_start_date,
+bkp.int_fido_end_date,
+bkp.shm_end_date,
+bkp.tv_end_date,
+bkp.int_rog_end_date,
+bkp.rhp_end_date,
+bkp.consolidated_ind,
+bkp.src_acct_id,
+bkp.process_date,
+null,
+bkp.calendar_year,
+bkp.calendar_month
+from data_pods.ch_profile_acct_summary_dly_bkp bkp inner join
+(select calendar_year, calendar_month, max(process_date) as process_date from data_pods.ch_profile_acct_summary_dly_bkp  group by calendar_year, calendar_month) bkp1
+on bkp.calendar_year = bkp1.calendar_year and
+bkp.calendar_month = bkp1.calendar_month and
+bkp.process_date = bkp1.process_date;
+
+
+--drop bkp table
+drop table data_pods.ch_profile_acct_summary_dly_bkp purge;
+
+--describe  table
+desc data_pods.ch_profile_acct_summary_dly;
+
+--drop table data_pods.VW_CH_CONVERGED_ACCT_SUMMARY_WKLY purge;
+CREATE TABLE data_pods.VW_CH_CONVERGED_ACCT_SUMMARY_WKLY(
+enterprise_id           varchar(50),
+customer_id             bigint,
+customer_account        bigint,
+cr_key                  varchar(50),
+customer_location_id    bigint,
+age                     int,
+postal_code             varchar(6),
+num_stb                 int,
+tenure_month_tv         bigint,
+tenure_month_rint       bigint,
+tenure_month_rhp        bigint,
+tenure_month_fint       bigint,
+tenure_month_shm        bigint,
+tenure_year_tv          bigint,
+tenure_year_rint        bigint,
+tenure_year_rhp         bigint,
+tenure_year_fint        bigint,
+tenure_year_shm         bigint,
+product_source          string,
+flg_in_cablefootprint   int,
+flg_out_cablefootprint  int,
+flg_tv                  int,
+flg_rhp                 int,
+flg_shm                 int,
+flg_internet            int,
+flg_rogers              int,
+flg_fido                int,
+brand                   string,
+flg_selfserv            int,
+flg_analog_tv           int,
+int_fido_start_date     date,
+shm_start_date          date,
+tv_start_date           date,
+int_rog_start_date      date,
+rhp_start_date          date,
+int_fido_end_date       date,
+shm_end_date            date,
+tv_end_date             date,
+int_rog_end_date        date,
+rhp_end_date            date,
+consolidated_ind        varchar(1),
+src_acct_id             bigint,
+process_date            date,
+calendar_year           int,
+calendar_month          int,
+hdp_update_ts           timestamp,
+activity_date           date)
+tblproperties ("orc.compress"="SNAPPY");
+

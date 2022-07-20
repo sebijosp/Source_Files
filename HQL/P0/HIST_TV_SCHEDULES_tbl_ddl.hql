@@ -1,0 +1,36 @@
+CREATE TABLE iptv.hist_tv_schedules (
+  schemaVersion    String,
+  content    String,
+  created    String,
+  copyright    String,
+  start    String,
+  period    String,
+  type    String,
+  sourceId    String,
+  prgSvcId    String,
+  TMSId    String,
+  `date`    String,
+  time    String,
+  dur    String,
+  tvRating    String,
+  body    String,
+  partNum    String,
+  numOfParts    String,
+  tvSubRating    String,
+  tvsubrating_body    String,
+  netSynSource    String,
+  netSynType    String,
+  sap    String,
+  lang    String,
+  subtitled    String,
+  subtitled_lang    String,
+  dubbed    String,
+  dubbed_lang    String,
+  quals    String,
+  source_filename String,
+  hdp_create_ts timestamp,
+  hdp_update_ts timestamp
+)
+COMMENT 'Historical data for TV Schedules'
+PARTITIONED BY (received_date date)
+STORED as ORC

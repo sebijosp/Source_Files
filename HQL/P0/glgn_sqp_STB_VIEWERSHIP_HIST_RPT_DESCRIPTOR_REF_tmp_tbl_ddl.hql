@@ -1,0 +1,9 @@
+
+create table ext_stb_viewership.hist_rpt_descriptor_ref_sqp_imp(
+DESCRIPTOR_ID VARCHAR(7),
+TCODE CHAR(1),
+DSC VARCHAR(125),
+TEXT VARCHAR(8000),
+SOURCE_FILENAME  VARCHAR(100),
+DATALAKE_LOAD_TS TIMESTAMP)
+STORED AS ORC;

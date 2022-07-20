@@ -1,0 +1,42 @@
+create or replace view data_pods.VW_META_WL_PPC_SUB_EVENT_HRLY as
+select
+trx_seq_no as order_id,
+dealer_type as data_source,
+if (e_mail IS NOT NULL and  trim(e_mail) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(e_mail) AS STRING))) AS VARCHAR(64)),'') AS email,
+if (subscriber_no IS NOT NULL and  trim(subscriber_no) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(subscriber_no) AS STRING))) AS VARCHAR(64)),'') AS phone,
+if (postal_code IS NOT NULL and trim(postal_code) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(postal_code) AS STRING))) AS VARCHAR(64)),'') AS zip,
+if(pe.ban IS NOT NULL, cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM(cast(pe.ban AS STRING))) AS VARCHAR(64)),NULL) as extern_id,
+if (first_name IS NOT NULL and  trim(first_name) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(first_name) AS STRING))) AS VARCHAR(64)),'') AS fn,
+if (last_name IS NOT NULL and  trim(last_name) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(last_name) AS STRING))) AS VARCHAR(64)),'') AS ln,
+if (dob IS NOT NULL and  dob !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (dob AS STRING))) AS VARCHAR(64)),'') AS dob,
+if (city IS NOT NULL and  trim(city) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(city) AS STRING))) AS VARCHAR(64)),'') AS ct,
+if (state IS NOT NULL and  trim(state) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(state) AS STRING))) AS VARCHAR(64)),'') AS st,
+if (country IS NOT NULL and  trim(country) !='',cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM (cast (lower(country) AS STRING))) AS VARCHAR(64)),'') AS country,
+event_dttm as event_time,
+'purchase' as event_name,
+'CAD' as currency,
+soc_pp_rate as value,
+soc_description as name,
+0 as price,
+'NA' as brand,
+'NA' as device_manufacturer,
+'plan' as category,
+'NA' as sku,
+'NA' as variant,
+1 as quantity,
+'NA' as coupon_code,
+soc as price_plan,
+'NA' as device_type,
+'NA' as device_model,
+price_plan_type_4 as tier_plan,
+'PPC' as transaction_type,
+dlr_name as store_location_name,
+dlr_adr_state_code as store_location_region,
+dlr_adr_city as store_location_city,
+segment_desc as customer_segment,
+brand as rogers_fido,
+run_date
+from
+    data_pods.WL_PPC_SUB_EVENT_HRLY pe
+where 1=1
+    AND PPC_STATUS = 'PPC effective immediately';

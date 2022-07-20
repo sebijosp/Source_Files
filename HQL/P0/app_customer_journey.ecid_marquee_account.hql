@@ -1,0 +1,85 @@
+set hive.execution.engine=tez;
+use app_customer_journey;
+
+create table if not exists hist_ecid_marquee_account
+(company_number varchar(3)
+,account_number varchar(9)
+,subscriber_seq decimal(8,0)
+,status varchar(1)
+,special_discount_code decimal(2,0)
+,minimum_pay_frequency varchar(1)
+,pay_method_code varchar(1)
+,cycle_number decimal(2,0)
+,primary_or_dependant varchar(1)
+,number_of_dependants decimal(1,0)
+,create_date timestamp
+,connection_date timestamp
+,disconnect_date timestamp
+,transfer_to_company varchar(3)
+,transfer_to_account varchar(9)
+,primary_company varchar(3)
+,primary_account varchar(9)
+,lnk_invoice varchar(1)
+,parent_com_num varchar(3)
+,parent_acct_num varchar(9)
+,audit_ind varchar(1)
+,audit_date timestamp
+,customer_source_ind varchar(1)
+,status_old varchar(1)
+,third_party_ind varchar(1)
+,off_billing_type varchar(1)
+,rev_gen_ind varchar(1)
+,rec_created_date timestamp
+,lastmodified_date timestamp
+,created_load_id decimal(15,0)
+,lastmodified_load_id decimal(15,0)
+,datalake_execution_id bigint
+,datalake_load_ts timestamp
+,ecid bigint 
+,ban varchar(300)
+,hash_ban varchar(300)
+,crm_acct_type varchar(100)
+,crm_acct_subtype varchar(100)
+)
+partitioned by (build_date date) stored as orc;
+
+create table if not exists ecid_marquee_account
+(company_number varchar(3)
+,account_number varchar(9)
+,subscriber_seq decimal(8,0)
+,status varchar(1)
+,special_discount_code decimal(2,0)
+,minimum_pay_frequency varchar(1)
+,pay_method_code varchar(1)
+,cycle_number decimal(2,0)
+,primary_or_dependant varchar(1)
+,number_of_dependants decimal(1,0)
+,create_date timestamp
+,connection_date timestamp
+,disconnect_date timestamp
+,transfer_to_company varchar(3)
+,transfer_to_account varchar(9)
+,primary_company varchar(3)
+,primary_account varchar(9)
+,lnk_invoice varchar(1)
+,parent_com_num varchar(3)
+,parent_acct_num varchar(9)
+,audit_ind varchar(1)
+,audit_date timestamp
+,customer_source_ind varchar(1)
+,status_old varchar(1)
+,third_party_ind varchar(1)
+,off_billing_type varchar(1)
+,rev_gen_ind varchar(1)
+,rec_created_date timestamp
+,lastmodified_date timestamp
+,created_load_id decimal(15,0)
+,lastmodified_load_id decimal(15,0)
+,datalake_execution_id bigint
+,datalake_load_ts timestamp
+,ecid bigint 
+,ban varchar(300)
+,hash_ban varchar(300)
+,crm_acct_type varchar(100)
+,crm_acct_subtype varchar(100))
+stored as orc;

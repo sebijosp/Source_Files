@@ -1,0 +1,20 @@
+create or replace view DATA_PODS_NONPI.VW_POD_USAGE_CTN_DLY as
+select
+if(BAN IS NOT NULL, cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM(cast(BAN AS STRING))) AS VARCHAR(64)),NULL) AS BAN,
+if(SUBSCRIBER_NO IS NOT NULL, cast(reflect('org.apache.commons.codec.digest.DigestUtils','sha256Hex',TRIM(cast(SUBSCRIBER_NO AS STRING))) AS VARCHAR(64)),NULL) AS SUBSCRIBER_NO,
+DATA_USAGE
+,DATA_USAGE_OTHER
+,DATA_USAGE_ROAM
+,DATA_TOTAL
+,VM_CTN_MINS_LOCAL
+,VM_NUM_CALLS_LOCAL
+,VM_CTN_MINS_LD_CAN
+,VM_NUM_CALLS_LD_CAN
+,VM_CTN_MINS_LD_USA
+,VM_NUM_CALLS_LD_USA
+,CTN_MINS_LOCAL
+,NUM_CALLS_LOCAL
+,CTN_MINS_LD_CAN
+,NUM_CALLS_LD_CAN
+,CTN_MINS_LD_USA
+,NUM_CALLS_LD_USA from data_pods.pod_usage_ctn_dly;

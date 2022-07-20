@@ -1,0 +1,45 @@
+CREATE TABLE HEM.IPDR_S10_STAGE LIKE HEM.IPDR_S10;
+
+DROP TABLE IF EXISTS HEM.MODEM_SERVICE_QUALITY_HOURLY;
+CREATE TABLE HEM.MODEM_SERVICE_QUALITY_HOURLY(
+  cm_mac_address string,
+  cmts string,
+  channel_number int,
+  cmts_md_if_name string,
+  cmts_md_if_index string,
+  cmts_cm_us_rx_power_sum int,
+  cmts_cm_us_signal_noise_sum int,
+  cmts_cm_us_rx_power_max int,
+  cmts_cm_us_signal_noise_max int,
+  cmts_cm_us_rx_power_avg double,
+  cmts_cm_us_signal_noise_avg double,
+  cmts_cm_us_uncorrectables int,
+  cmts_cm_us_correcteds int,
+  cmts_cm_us_unerroreds int,
+  codeword_error_rate double,
+  account string COMMENT 'Subscriber Account Number',
+  system string COMMENT 'Billing System (SS or Maestro)',
+  phub string COMMENT 'Primary HUB',
+  shub string COMMENT 'Secondary HUB',
+  node string COMMENT '',
+  rtn_seg string COMMENT '',
+  clamshell string COMMENT '',
+  smt string COMMENT '',
+  modem_manufacturer string COMMENT 'Manufacturer of the Modem',
+  model string COMMENT 'Modem Model Info',
+  firmware string COMMENT '',
+  bb_tier string COMMENT 'Broadband Tier',
+  hh_type string COMMENT 'Household Type',
+  contract_type string COMMENT '',
+  address string COMMENT 'Address of the Subscriber',
+  time_zone string COMMENT 'Standard timezone designation. ** EST+1 refers to Atlantic Standard Time',
+  is_dst string COMMENT 'Y - If zipcode participates in Daylight Saving Time. Else - N',
+  equipment_status_code string COMMENT '',
+  billing_src_mac_id string COMMENT 'MAC address of the subscriber in the format of billing system.',
+  postal_zip_code string COMMENT '6 character zipcode associated with the Subscriber Address',
+  file_ts_utc timestamp,
+  hdp_insert_ts timestamp,
+  hdp_update_ts timestamp)
+PARTITIONED BY (
+  event_timestamp timestamp)
+STORED AS ORC;

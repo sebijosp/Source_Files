@@ -1,0 +1,32 @@
+CREATE TABLE iptv.ppv_raw_edr (
+     vsp_id  String,
+     trans_id        String,
+     iptv_service_id String,
+     equipment_id    String,
+     equipment_name     String,
+     event_cd        String,
+     event_type_cd   String,
+     provider_id     String,
+     genre      String,
+     charge_amt      Decimal(9,2),
+     purchase_date_ts_utc    varchar(30),
+     event_billing_desc      String,
+     commercial_rate_amt     Decimal(9,2),
+     facilitator_fee_amt     Decimal(9,2),
+     event_start_ts_utc      varchar(30),
+     event_end_ts_utc        varchar(30),
+     ppv_type_cd     String,
+     package_desc    String,
+     rating_cd       String,
+     user_id         String,
+     w3_service_profile_id   String,
+     promotion_cd    String,
+     billing_id      String,
+     reserved_status_cd      String,
+     status  String,
+     status_info     String,
+     hdp_create_ts   timestamp,
+     hdp_update_ts   timestamp
+     )
+  PARTITIONED BY (event_date Date)
+  STORED as ORC

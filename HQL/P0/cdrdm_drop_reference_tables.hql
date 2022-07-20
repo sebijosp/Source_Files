@@ -1,0 +1,13 @@
+DROP TABLE cdrdm.mps_cust_1;
+DROP TABLE cdrdm.wholesale_service_all_imsi;
+DROP TABLE cdrdm.time;
+DROP TABLE cdrdm.state_mps;
+DROP TABLE cdrdm.gmpc_location;
+DROP TABLE cdrdm.interaction_source;
+DROP TABLE cdrdm.country_code;
+DROP TABLE cdrdm.carrier;
+DROP TABLE cdrdm.fault_code;
+DROP TABLE cdrdm.eng_handset_tac;
+DROP TABLE cdrdm.operatorcodes_eng;
+DROP TABLE cdrdm.age_group;
+DROP TABLE cdrdm.date;

@@ -1,0 +1,98 @@
+CREATE TABLE data_pods.ch_pod_profile_acct_dly_bkp (
+  enterprise_id varchar(50),
+  customer_id bigint,
+  customer_account bigint,
+  cr_key varchar(50),
+  customer_location_id bigint,
+  age int,
+  postal_code varchar(6),
+  num_stb int,
+  tenure_month_tv bigint,
+  tenure_month_rint bigint,
+  tenure_month_rhp bigint,
+  tenure_month_fint bigint,
+  tenure_month_shm bigint,
+  tenure_year_tv bigint,
+  tenure_year_rint bigint,
+  tenure_year_rhp bigint,
+  tenure_year_fint bigint,
+  tenure_year_shm bigint,
+  product_source string,
+  flg_in_cablefootprint int,
+  flg_out_cablefootprint int,
+  flg_tv int,
+  flg_rhp int,
+  flg_shm int,
+  flg_internet int,
+  flg_rogers int,
+  flg_fido int,
+  brand string,
+  flg_selfserv int,
+  flg_analog_tv int ) 
+PARTITIONED BY (
+  calendar_month int,
+  calendar_year int,
+  process_date string ) ;
+  
+INSERT OVERWRITE TABLE data_pods.ch_pod_profile_acct_dly_bkp PARTITION(calendar_month,calendar_year,process_date)
+SELECT enterprise_id, customer_id, customer_account, cr_key, customer_location_id, age, postal_code, num_stb, tenure_month_tv, tenure_month_rint, 
+       tenure_month_rhp, tenure_month_fint, tenure_month_shm, tenure_year_tv, tenure_year_rint, tenure_year_rhp, tenure_year_fint, tenure_year_shm, product_source,
+       flg_in_cablefootprint, flg_out_cablefootprint, flg_tv, flg_rhp, flg_shm, flg_internet, flg_rogers, flg_fido, brand, flg_selfserv, flg_analog_tv,
+       calendar_month, calendar_year, process_date
+FROM data_pods.ch_pod_profile_acct_dly;
+
+DROP TABLE data_pods.ch_pod_profile_acct_dly;
+CREATE TABLE data_pods.ch_pod_profile_acct_dly (
+  enterprise_id varchar(50),
+  customer_id bigint,
+  customer_account bigint,
+  cr_key varchar(50),
+  customer_location_id bigint,
+  age int,
+  postal_code varchar(6),
+  num_stb int,
+  tenure_month_tv bigint,
+  tenure_month_rint bigint,
+  tenure_month_rhp bigint,
+  tenure_month_fint bigint,
+  tenure_month_shm bigint,
+  tenure_year_tv bigint,
+  tenure_year_rint bigint,
+  tenure_year_rhp bigint,
+  tenure_year_fint bigint,
+  tenure_year_shm bigint,
+  product_source string,
+  flg_in_cablefootprint int,
+  flg_out_cablefootprint int,
+  flg_tv int,
+  flg_rhp int,
+  flg_shm int,
+  flg_internet int,
+  flg_rogers int,
+  flg_fido int,
+  brand string,
+  flg_selfserv int,
+  flg_analog_tv int,
+  int_fido_start_date date,
+  shm_start_date date,
+  tv_start_date date,
+  int_rog_start_date date,
+  rhp_start_date date,
+  int_fido_end_date date,
+  shm_end_date date,
+  tv_end_date date,
+  int_rog_end_date date,
+  rhp_end_date date) 
+PARTITIONED BY (
+  calendar_month int,
+  calendar_year int,
+  process_date string ) ;
+  
+INSERT OVERWRITE TABLE data_pods.ch_pod_profile_acct_dly PARTITION(calendar_month,calendar_year,process_date)
+SELECT enterprise_id, customer_id, customer_account, cr_key, customer_location_id, age, postal_code, num_stb, tenure_month_tv, tenure_month_rint, 
+       tenure_month_rhp, tenure_month_fint, tenure_month_shm, tenure_year_tv, tenure_year_rint, tenure_year_rhp, tenure_year_fint, tenure_year_shm, product_source,
+       flg_in_cablefootprint, flg_out_cablefootprint, flg_tv, flg_rhp, flg_shm, flg_internet, flg_rogers, flg_fido, brand, flg_selfserv, flg_analog_tv,
+       null int_fido_start_date, null shm_start_date, null tv_start_date, null int_rog_start_date, null rhp_start_date, 
+       null int_fido_end_date,null shm_end_date, null tv_end_date, null int_rog_end_date, null rhp_end_date,
+       calendar_month, calendar_year, process_date
+FROM data_pods.ch_pod_profile_acct_dly_bkp;

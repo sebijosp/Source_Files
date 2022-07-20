@@ -1,0 +1,4 @@
+select
+<SELECT_COLS_PLACEHOLDER>
+from iptv.est_asset_dim
+where ( <SQP_DELTA_WHERE_CONDITION_PLACEHOLDER> )
